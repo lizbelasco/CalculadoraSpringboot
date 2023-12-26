@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by tlopez (tlopez) -->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://itq.edu/soa" targetNamespace="http://itq.edu/soa">
+	<wsdl:types>
+		<xs:schema targetNamespace="http://itq.edu/soa" elementFormDefault="qualified">
+			<xs:element name="EntradaCalculadora">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="numero1" type="xs:int"/>
+						<xs:element name="numero2" type="xs:int"/>
+						<xs:element name="operacion" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SalidaCalculadora">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="resultado" type="xs:double"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="calcularMessageRequest">
+		<wsdl:part name="parameter" element="tns:EntradaCalculadora"/>
+	</wsdl:message>
+	<wsdl:message name="calcularMessageResponse">
+		<wsdl:part name="parameter" element="tns:SalidaCalculadora"/>
+	</wsdl:message>
+	<wsdl:portType name="calcularPortType">
+		<wsdl:operation name="calcularOperation">
+			<wsdl:input message="tns:calcularMessageRequest"/>
+			<wsdl:output message="tns:calcularMessageResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="calcular2Operation">
+			<wsdl:input message="tns:calcularMessageRequest"/>
+			<wsdl:output message="tns:calcularMessageResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="calcularBinding" type="tns:calcularPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="calcularOperation">
+			<soap:operation soapAction="http://itq.edu/soa/calcularOperation"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="calcular2Operation">
+			<soap:operation soapAction="http://itq.edu/soa/calcular2Operation"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="calcularService">
+		<wsdl:port name="calcularPort" binding="tns:calcularBinding">
+			<soap:address location="http://localhost:8080/calculadora"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

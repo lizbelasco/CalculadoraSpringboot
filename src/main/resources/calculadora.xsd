@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soa="http://itq.edu/soa" targetNamespace="http://itq.edu/soa" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="EntradaCalculadora">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="numero1" type="xs:int"/>
+				<xs:element name="numero2" type="xs:int"/>
+				<xs:element name="operacion" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SalidaCalculadora">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="resultado" type="xs:double"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
